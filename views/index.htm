@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SEO Reports </title>
+  </head>
+  <body>
+    <a href="" onclick="Auth.yandex(); return false;">login</a>
+  </body>
+  <script type="text/javascript">
+    Auth = {
+      window: null, 
+      url: 'https://oauth.yandex.ru/authorize?response_type=token&client_id=eaa6d2ec0917404ab0221843c20c5686&display=popup&state=hello', 
+      yandex: function(){
+        this.window = window.open(this.url, "authentication", "width=800, height=450");
+      },
+      setToken: function(token){
+        this.token = token;
+        this.window.close(); 
+      }
+    }
+  </script>
+</html> 

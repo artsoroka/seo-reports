@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SEO Reports </title>
+  </head>
+  <body>
+    <a href="" onclick="Auth.yandex(); return false;">login</a>
+  </body>
+  <script type="text/javascript">
+    params = window.location.hash.split('#')[1].split('&');
+    params.forEach(function(keyValue){
+      if(keyValue.match('access_token')){
+      data = keyValue.split('=');
+      token = data[1]; 
+      window.opener.Auth.setToken(token); 
+    }
+  });
+
+  </script>
+</html> 
