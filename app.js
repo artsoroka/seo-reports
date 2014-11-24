@@ -1,14 +1,31 @@
-var fs = require('fs'),
-    express = require('express'); 
+var fs = require('fs'); 
+var util = require('util'); 
 
-var app = express()
+var express = require('express'),
+    app = express(),
+    home = express(); 
+
+var cookieParser = require('cookie-parser')
 
 var config = {
   port: 80
 }
 
+checkAuth = function(req,res,next){
+  if(req.cookies && req.cookies.auth) return next(); 
+  res.send('you need to be logged in to view this page');  
+}
 
 app.use(express.static(__dirname + '/public'));
+app.use(cookieParser()); 
+
+app.use('/home', home); 
+home.all('*', checkAuth); 
+
+
+home.get('/', function(req,res){
+  res.send('home'); 
+}); 
 
 var indexPage = fs.readFileSync('./views/index.htm'); 
 var loginPage = fs.readFileSync('./views/login.htm'); 
