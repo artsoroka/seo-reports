@@ -46,6 +46,11 @@ app.get('/login/yandex', function(req,res){
   res.send(loginPage);  
 }); 
 
+app.post('/login/yandex', function(req,res){
+  res.set('Content-Type', 'application/json');
+  res.send(JSON.stringify({ cookie: 123, token: req.body.access_token })); 
+})
+
 var server = app.listen(config.port, function () {
 
   var host = server.address().address

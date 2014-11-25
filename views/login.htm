@@ -17,20 +17,6 @@
     </div>
   </body>
   <script type="text/javascript">
-    params = window.location.hash.split('#')[1].split('&');
-   
-    var parse = function(str){ 
-      var params = {};
-      if( ! str.length ) return params; 
-
-      str.map(function(keyValue){
-        data = keyValue.split('='); 
-        params[data[0]] = data[1];
-      }); 
-      return params; 
-    }
-
-    var data = parse(params);
-    console.log(data); 
+    window.opener.Auth.readHash(window.location.hash); 
   </script>
 </html> 
