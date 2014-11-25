@@ -14,20 +14,19 @@
   </body>
   <script type="text/javascript">
     params = window.location.hash.split('#')[1].split('&');
+   
+    var parse = function(str){ 
+      var params = {};
+      if( ! str.length ) return params; 
 
-    var parse = function(params){ 
-      var token = null; 
-      params.forEach(function(keyValue){ 
-        if(keyValue.match('access_token')){
-          data = keyValue.split('=');
-          token = data[1];
-          return token; 
-        } 
+      str.map(function(keyValue){
+        data = keyValue.split('='); 
+        params[data[0]] = data[1];
       }); 
-      return token; 
+      return params; 
     }
 
-    var data =  parse(params);
-    console.log("res is ", res); 
+    var data = parse(params);
+    console.log(data); 
   </script>
 </html> 
