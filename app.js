@@ -5,7 +5,8 @@ var express = require('express'),
     app = express(),
     home = express(); 
 
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser'); 
 
 var config = {
   port: 80
@@ -18,6 +19,7 @@ checkAuth = function(req,res,next){
 
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser()); 
+app.use(bodyParser.json()); 
 
 app.use('/home', home); 
 home.all('*', checkAuth); 
